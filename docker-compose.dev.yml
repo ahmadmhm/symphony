@@ -1,0 +1,64 @@
+version: "3.8"
+
+services:
+    app:
+        build:
+            context: ./
+            dockerfile: dev.Dockerfile
+        image: symphony-alpine
+        container_name: sm-panel
+        restart: unless-stopped
+        working_dir: /var/www/html
+        tty: true
+        ports:
+            - "8090:8080"
+        volumes:
+            - ./:/var/www/html
+        networks:
+            - symphony-network
+
+    mysql_db:
+        container_name: sm-mysql-db
+        image: mysql:8.0
+        restart: always
+        ports:
+            - '3307:3306'
+        volumes:
+            - db-data-mysql:/var/lib/mysql
+#            - .docker/mysql/init.sql:/docker-entrypoint-initdb.d/setup.sql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=symphony_db
+        networks:
+            - symphony-network
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        depends_on:
+            - mysql_db
+        environment:
+            - PMA_HOST=mysql_db
+        restart: always
+        ports:
+            - "8091:80"
+        networks:
+            - symphony-network
+    redis:
+        image: redis:alpine
+        container_name: sm-redis
+        hostname: redis
+        ports:
+            - '6479:6379'
+        networks:
+            - symphony-network
+        healthcheck:
+            test: [ "CMD", "redis-cli", "ping" ]
+            retries: 3
+            timeout: 5s
+
+networks:
+    symphony-network:
+
+volumes:
+    db-data-mysql:
+
