@@ -1,0 +1,6 @@
+panel_login_show:
+  path: /login
+  controller: App\Controller\Panel\AuthController::show
+panel_logout:
+  path: /logout
+  controller: App\Controller\Panel\AuthController::logout
