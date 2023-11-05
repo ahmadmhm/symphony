@@ -2,8 +2,8 @@ FROM alpine:3.18
 
 ARG ALPINE_VERSION=3.18
 
-LABEL Maintainer="Morteza Fathi <mortezaa.fathi@gmail.com>" \
-      Description="Lightweight container with Nginx 1.24 & PHP-FPM 8.2 based on Alpine Linux."
+LABEL Maintainer="Ahmad Mohammadi <ahmadmohammadi940@gmail.com>" \
+      Description="Lightweight container with Nginx 1.24 based on Alpine Linux."
 
 RUN echo https://mirrors.pardisco.co/alpine/v$ALPINE_VERSION/main > /etc/apk/repositories
 RUN echo https://mirrors.pardisco.co/alpine/v$ALPINE_VERSION/community >> /etc/apk/repositories
