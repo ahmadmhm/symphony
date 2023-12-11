@@ -20,7 +20,7 @@ services:
     mysql_db:
         container_name: sm-mysql-db
         image: mysql:8.0
-        restart: always
+        restart: unless-stopped
         ports:
             - '3307:3306'
         volumes:
@@ -38,7 +38,7 @@ services:
             - mysql_db
         environment:
             - PMA_HOST=mysql_db
-        restart: always
+        restart: unless-stopped
         ports:
             - "8091:80"
         networks:
