@@ -25,10 +25,9 @@ services:
             - '3307:3306'
         volumes:
             - db-data-mysql:/var/lib/mysql
-#            - .docker/mysql/init.sql:/docker-entrypoint-initdb.d/setup.sql
+            - .docker/mysql/init.sql:/docker-entrypoint-initdb.d/setup.sql
         environment:
             - MYSQL_ROOT_PASSWORD=root
-            - MYSQL_DATABASE=symphony_db
         networks:
             - symphony-network
 
