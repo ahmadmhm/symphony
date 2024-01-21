@@ -1,1 +1,1 @@
-CREATE DATABASE symphony_db;
+CREATE DATABASE IF NOT EXISTS symphony_db;
