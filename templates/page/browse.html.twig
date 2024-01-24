@@ -1,0 +1,20 @@
+{% extends 'panel/layouts/master.html.twig' %}
+{% block title %} Here Browsing {{ parent()}} {% endblock %}
+{% block content %}
+<h1>
+    {{ title }}
+</h1>
+<h3>
+    {{ 'My motto' }}
+</h3>
+<h2>
+    <ul>
+        {% for page in pages %}
+            <li>
+                {{ page.title }} ## <strong>{{ page.item | upper|lower}}</strong>
+            </li>
+        {% endfor %}
+    </ul>
+</h2>
+{% endblock %}
+
