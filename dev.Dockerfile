@@ -49,6 +49,7 @@ RUN apk add --no-cache --no-check-certificate nginx \
     vim \
     htop \
     nodejs \
+    yarn \
     npm
 
 RUN ln -s /usr/bin/php83 /usr/bin/php
