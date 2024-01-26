@@ -12,14 +12,23 @@ use function Symfony\Component\String\u;
 class PageController extends AbstractController
 {
 
-    #[Route('/home-page')]
+    #[Route('/', 'app_homepage')]
     public function homePage(): Response
     {
-        return new Response('Returned the text');
+        return $this->render('page/homepage.html.twig', [
+            'title' => 'Home Page',
+            'tracks' => [
+                ['title' =>'dhbgdfbght', 'artist' => 'ttt'],
+                ['title' =>'dhtgh', 'artist' => 'fbvdfvb'],
+                ['title' =>'ue90rtughtb0', 'artist' => 'bdfb'],
+                ['title' =>'djgbhv7tygh', 'artist' => '5645b h45'],
+                ['title' =>'87b hyfch', 'artist' => 'bi ovdfh'],
+            ],
+        ]);
     }
 
-    #[Route('/browse/{slug}')]
-    public function browse(string $slug = null): Response
+    #[Route('/browse/{slug}', 'app_browse_page')]
+    public function browse(string $slug = 'no slug'): Response
     {
         $title = u(str_replace('-', ' ', $slug))->title(true);
 
