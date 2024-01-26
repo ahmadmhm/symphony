@@ -1,6 +1,6 @@
-FROM alpine:3.18
+FROM alpine:3.19
 
-ARG ALPINE_VERSION=3.18
+ARG ALPINE_VERSION=3.19
 
 LABEL Maintainer="Ahmad Mohammadi <ahmadmohammadi940@gmail.com>" \
       Description="Lightweight container with Nginx 1.24 based on Alpine Linux."
@@ -9,34 +9,34 @@ RUN echo https://mirrors.pardisco.co/alpine/v$ALPINE_VERSION/main > /etc/apk/rep
 RUN echo https://mirrors.pardisco.co/alpine/v$ALPINE_VERSION/community >> /etc/apk/repositories
 
 # Install packages and remove default server definition
-RUN apk add --no-cache --no-check-certificate php82 \
-    php82-common \
-    php82-fpm \
-    php82-pdo \
-    php82-opcache \
-    php82-zip \
-    php82-phar \
-    php82-iconv \
-    php82-cli \
-    php82-curl \
-    php82-openssl \
-    php82-mbstring \
-    php82-tokenizer \
-    php82-fileinfo \
-    php82-json \
-    php82-xml \
-    php82-xmlwriter \
-    php82-xmlreader \
-    php82-simplexml \
-    php82-dom \
-    php82-pdo_pgsql \
-    php82-pdo_mysql \
-    php82-pdo_sqlite \
-    php82-pecl-redis \
-    php82-posix \
-    php82-pcntl \
-    php82-bcmath \
-    php82-ctype
+RUN apk add --no-cache --no-check-certificate php83 \
+    php83-common \
+    php83-fpm \
+    php83-pdo \
+    php83-opcache \
+    php83-zip \
+    php83-phar \
+    php83-iconv \
+    php83-cli \
+    php83-curl \
+    php83-openssl \
+    php83-mbstring \
+    php83-tokenizer \
+    php83-fileinfo \
+    php83-json \
+    php83-xml \
+    php83-xmlwriter \
+    php83-xmlreader \
+    php83-simplexml \
+    php83-dom \
+    php83-pdo_pgsql \
+    php83-pdo_mysql \
+    php83-pdo_sqlite \
+    php83-pecl-redis \
+    php83-posix \
+    php83-pcntl \
+    php83-bcmath \
+    php83-ctype
 
 
 RUN apk add --no-cache --no-check-certificate nginx \
@@ -51,17 +51,17 @@ RUN apk add --no-cache --no-check-certificate nginx \
     nodejs \
     npm
 
-RUN ln -s /usr/bin/php82 /usr/bin/php
+RUN ln -s /usr/bin/php83 /usr/bin/php
 
 # Install PHP tools
-COPY --from=composer:2.5.8 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:2.6.6 /usr/bin/composer /usr/local/bin/composer
 
 # Configure nginx
 COPY .docker/dev/config/nginx.conf /etc/nginx/nginx.conf
 
 # Configure PHP-FPM
-COPY .docker/dev/config/fpm-pool.conf /etc/php82/php-fpm.d/www.conf
-COPY .docker/dev/config/php.ini /etc/php82/conf.d/custom.ini
+COPY .docker/dev/config/fpm-pool.conf /etc/php83/php-fpm.d/www.conf
+COPY .docker/dev/config/php.ini /etc/php83/conf.d/custom.ini
 
 # Configure supervisord
 COPY .docker/dev/config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf

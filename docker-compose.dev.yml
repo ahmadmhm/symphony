@@ -11,7 +11,7 @@ services:
         working_dir: /var/www/html
         tty: true
         ports:
-            - "8090:8080"
+            - "9090:8080"
         volumes:
             - ./:/var/www/html
         networks:
@@ -25,10 +25,9 @@ services:
             - '3307:3306'
         volumes:
             - db-data-mysql:/var/lib/mysql
-#            - .docker/mysql/init.sql:/docker-entrypoint-initdb.d/setup.sql
+            - .docker/mysql/init.sql:/docker-entrypoint-initdb.d/setup.sql
         environment:
             - MYSQL_ROOT_PASSWORD=root
-            - MYSQL_DATABASE=symphony_db
         networks:
             - symphony-network
 
@@ -40,7 +39,7 @@ services:
             - PMA_HOST=mysql_db
         restart: unless-stopped
         ports:
-            - "8091:80"
+            - "8092:80"
         networks:
             - symphony-network
     redis:
@@ -48,7 +47,7 @@ services:
         container_name: sm-redis
         hostname: redis
         ports:
-            - '6479:6379'
+            - '6679:6379'
         networks:
             - symphony-network
         healthcheck:
