@@ -2,6 +2,7 @@
 /.idea
 /.vscode
 .env
+.env.test
 /node_modules
 /var/cache
 /var/log

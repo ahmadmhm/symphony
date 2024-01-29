@@ -12,4 +12,9 @@ class AuthController extends AbstractController
     {
         return $this->render('panel/auth/login.html.twig');
     }
+
+    public function logout(Request $request)
+    {
+        return $this->render('panel/auth/login.html.twig');
+    }
 }
